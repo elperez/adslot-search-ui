@@ -1,0 +1,7 @@
+.footer {
+  padding: 2em;
+  flex: 0 0 auto;
+  position: relative;
+  background-color: #2D2D2F;
+  height: 5em;
+}
