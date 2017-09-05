@@ -16,25 +16,43 @@ class Searchbar extends Component {
 
   constructor(props) {
     super(props)
-    // this.onLikeButtonClick = this.onLikeButtonClick.bind(this)
-    console.log("hello", this.props.sites);
     this.state = {
-      search: ""
+      search: "",
+      categories: this.props.categories
     }
   }
 
   updateSearch(event) {
-
-    this.setState({search: event.substr(0,20)});
+    this.setState({search: event});
   }
 
   render() {
     let filteredSites = this.props.sites.filter(
       (site) => {
-        console.log("url",site.siteUrl);
-        return site.siteUrl.indexOf(this.state.search) !== -1;
+        let searchArray = this.state.search.split(',');
+
+        // return true to display sites that have a name containing the term(s)
+        // in searchArray
+        for(let i = 0 ; i < searchArray.length ; i++){
+          if (site.siteUrl.indexOf(searchArray[i]) !== -1){
+            return true;
+          }
+        }
+
+        // return true to display sites that have a name or category containing
+        // the term 
+        for (let i = 0; i < site.categoryIds.length; i++){
+          let categoryNumber = site.categoryIds[i];
+          let categoryFromList = this.state.categories[categoryNumber-1];
+          let categoryDescription = categoryFromList.description;
+          if (categoryDescription.indexOf(searchArray[i]) !== -1){
+            return true;
+          }
+        }
+        return false
       }
     );
+
     return <div className="searchBar">
       <MuiThemeProvider muiTheme={muiTheme}>
         <SearchBar
@@ -49,9 +67,8 @@ class Searchbar extends Component {
       </MuiThemeProvider>
       <ul>
         {filteredSites.map((site) => {
-          console.log("siteurl", site.siteUrl);
-          return <Site siteUrl={site.siteUrl} description={site.description}
-            key={site.id}/>
+          return <Site siteUrl={site.siteUrl} category={site.categoryIds} description={site.description}
+            key={site.id} categories={this.state.categories}/>
         })}
       </ul>
     </div>
