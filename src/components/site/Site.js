@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
+import './Site.css'
 
+const Site = (site) => {
+  const siteUrl = site.siteUrl;
+  const description = site.description;
 
-class Site extends Component {
-
-  render() {
-    return <div>
-      <a>{this.props.siteUrl} </a>
-      <p>{this.props.description}</p>
+  return (
+    <div>
+      <a href={siteUrl}>{siteUrl} </a>
+      <p>{description}</p>
     </div>
-  }
+  )
 }
 
 export default Site
