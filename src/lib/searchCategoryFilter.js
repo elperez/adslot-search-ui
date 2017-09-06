@@ -5,8 +5,10 @@ export default function isTermInSiteCategory(categoryIds, categoryList, searchAr
     let categoryNumber = categoryIds[i];
     let categoryFromList = categoryList[categoryNumber-1];
     let categoryDescription = categoryFromList.description;
-    if (categoryDescription.indexOf(searchArray[i]) !== -1){
-      return true;
+    for(let j = 0; j < searchArray.length; j ++){
+      if (categoryDescription.indexOf(searchArray[j]) !== -1) {
+        return true;
+      }
     }
   }
   return false;
