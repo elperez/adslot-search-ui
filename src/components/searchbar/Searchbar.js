@@ -4,8 +4,9 @@ import SearchBar from 'material-ui-search-bar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {grey900} from 'material-ui/styles/colors';
-import isTermInSiteUrl from '../../lib/searchSiteUrlFilter';
+import isTermInSiteName from '../../lib/searchSiteNameFilter';
 import isTermInSiteCategory from '../../lib/searchCategoryFilter';
+import getDataFromJSON from '../../lib/getDataFromJSON';
 import './Searchbar.css';
 
 const muiTheme = getMuiTheme({
@@ -17,27 +18,40 @@ const muiTheme = getMuiTheme({
 class Searchbar extends Component {
 
   constructor(props) {
-    super(props)
-    this.state = {
-      search: "",
-      categories: this.props.categories
-    }
-    this.updateSearch = this.updateSearch.bind(this)
+    super(props);
+
+    this.initialState = {
+      search: '',
+      data: '',
+    };
+    this.state = this.initialState;
+  }
+
+  componentWillMount(){
+    const setDataCopy = this.setData.bind(this);
+    getDataFromJSON('/content/data.json', setDataCopy);
+  }
+
+  setData(dat) {
+    this.setState({...this.state, data: dat});
   }
 
   updateSearch(event) {
-    this.setState({search: event});
+    this.setState({...this.state, search: event});
   }
 
   render() {
-    let filteredSites = this.props.sites.filter(
-      (site) => {
+    let filteredSites
+    if (this.state.data.sites == undefined)
+      filteredSites = []
+    else
+      filteredSites = this.state.data.sites.filter( (site) => {
         let searchArray = this.state.search.split(',');
 
         if (this.state.search === ""){
           return false;
-        } else if (isTermInSiteUrl(site.siteUrl, searchArray) ||
-          (isTermInSiteCategory(site.categoryIds, this.state.categories, searchArray))){
+        } else if (isTermInSiteName(site.siteName, searchArray) ||
+          (isTermInSiteCategory(site.categoryIds, this.state.data.categories, searchArray))){
           return true;
         } else {
           return false;
@@ -49,8 +63,8 @@ class Searchbar extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <SearchBar
           value={this.state.search}
-          onChange={this.updateSearch}
-          onRequestSearch={this.updateSearch}
+          onChange={this.updateSearch.bind(this)}
+          onRequestSearch={this.updateSearch.bind(this)}
           style={{
             margin: '0 auto',
             maxWidth: 800,
@@ -61,7 +75,7 @@ class Searchbar extends Component {
       <ul>
         {filteredSites.map((site) => {
           return <Site siteUrl={site.siteUrl} category={site.categoryIds} description={site.description}
-            key={site.id} categories={this.state.categories}/>
+            key={site.id} categories={this.state.data.categories}/>
         })}
       </ul>
     </div>
