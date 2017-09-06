@@ -4,10 +4,10 @@ import SearchBar from 'material-ui-search-bar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {grey900} from 'material-ui/styles/colors';
-import isTermInSiteName from '../../lib/searchSiteNameFilter';
-import isTermInSiteCategory from '../../lib/searchCategoryFilter';
-import getDataFromJSON from '../../lib/getDataFromJSON';
-import './Searchbar.css';
+import "./Searchbar.css";
+var isTermInSiteName = require('../../lib/searchSiteNameFilter').isTermInSiteName;
+var isTermInSiteCategory = require('../../lib/searchCategoryFilter').isTermInSiteCategory;
+var getDataFromJSON = require('../../lib/getDataFromJSON');
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -20,16 +20,15 @@ class Searchbar extends Component {
   constructor(props) {
     super(props);
 
-    this.initialState = {
+    this.state = {
       search: '',
       data: '',
     };
-    this.state = this.initialState;
   }
 
   componentWillMount(){
     const setDataCopy = this.setData.bind(this);
-    getDataFromJSON('/content/data.json', setDataCopy);
+    getDataFromJSON.getDataFromJSON("/content/data.json", setDataCopy);
   }
 
   setData(dat) {
@@ -40,9 +39,14 @@ class Searchbar extends Component {
     this.setState({...this.state, search: event});
   }
 
+  keyPress(event) {
+    if(event.key == 'Enter')
+      ;
+  }
+
   render() {
     let filteredSites
-    if (this.state.data.sites == undefined)
+    if (this.state.data.sites === undefined)
       filteredSites = []
     else
       filteredSites = this.state.data.sites.filter( (site) => {
@@ -56,28 +60,32 @@ class Searchbar extends Component {
         } else {
           return false;
         }
-      }
-    );
+      });
 
     return <div className="searchBar">
       <MuiThemeProvider muiTheme={muiTheme}>
         <SearchBar
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
+          onKeyPress={this.keyPress.bind(this)}
           onRequestSearch={this.updateSearch.bind(this)}
           style={{
             margin: '0 auto',
-            maxWidth: 800,
-            Width: 600
+            maxWidth: 1200
           }}
         />
       </MuiThemeProvider>
-      <ul>
-        {filteredSites.map((site) => {
-          return <Site siteUrl={site.siteUrl} category={site.categoryIds} description={site.description}
-            key={site.id} categories={this.state.data.categories}/>
-        })}
-      </ul>
+      {filteredSites.length ?
+        <ul>
+          {filteredSites.map((site) => {
+            return <Site siteUrl={site.siteUrl} category={site.categoryIds} description={site.description}
+              key={site.id} categories={this.state.data.categories}/>
+          })}
+        </ul>
+        : (this.state.search.length ? 
+        <img src={'/noresult.png'} style={{width:500, padding:10}} />
+        : <div/>)
+      }
     </div>
   }
 }

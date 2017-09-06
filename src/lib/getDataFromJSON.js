@@ -1,6 +1,6 @@
-import axios from 'axios';
+const axios = require('axios');
 
-export default function getDataFromJSON(url, myFunc){
+exports.getDataFromJSON =  function(url, myFunc){
     // get data from JSON
     axios.get(url)
       .then(res => {

@@ -1,10 +1,14 @@
-{
+const expect = require('chai').expect
+const assert = require('chai').assert
+const getDataFromJSON = require('../src/lib/getDataFromJSON').getDataFromJSON
+
+const data = {
   "sites" : [
     {
       "id": 1,
       "siteName": "SurferMag",
       "siteUrl": "www.surfermag.com",
-      "description": "Visit surfermag, Australia's online marketplace for fashion, electronics, digital cameras, sports, shoes, home décor, and cars. Great deals on brand new, fixed price items. Find your favourite brands.",
+      "description": "This is the description for SurferMag",
       "categoryIds": [
         2
       ]
@@ -13,7 +17,7 @@
       "id": 2,
       "siteName": "Ebay",
       "siteUrl": "www.ebay.com.au",
-      "description": "Visit eBay, Australia's online marketplace for fashion, electronics, digital cameras, sports, shoes, home décor, and cars. Great deals on brand new, fixed price items. Find your favourite brands.",
+      "description": "This is the description for ebay",
       "categoryIds": [
         1
       ]
@@ -37,7 +41,7 @@
        ]
     }
   ],
-
+  
   "categories": [
     {
       "id": 1,
@@ -57,3 +61,25 @@
     }
   ]
 }
+
+describe('getDataFromJSON', () => {
+    it('siteName is vaild', () => {
+        for(let i = 0; i < data.sites.length; i ++)
+            assert.isNotNull(data.sites[i].siteName);
+    })
+    it('description is vaild', () => {
+        for(let i = 0; i < data.sites[i].length; i ++)
+            assert.isNotNull(data.sites[i].description);
+    })
+    it('url is vaild', () => {
+        for(let i = 0; i < data.sites[i].length; i ++)
+            assert.isNotNull(data.sites[i].url);
+    })
+    it('category ids is vaild', () => {
+        for(let i = 0; i < data.sites[i].length; i ++)
+            assert.isNotNull(data.sites[i].categoryIds);
+    })
+    it('category length is vaild', () => {
+        expect(data.categories.length).to.equal(4);
+    })
+})
