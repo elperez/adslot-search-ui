@@ -40,7 +40,7 @@ class Searchbar extends Component {
   }
 
   keyPress(event) {
-    if(event.key == 'Enter')
+    if(event.key === 'Enter')
       ;
   }
 
@@ -82,8 +82,8 @@ class Searchbar extends Component {
               key={site.id} categories={this.state.data.categories}/>
           })}
         </ul>
-        : (this.state.search.length ? 
-        <img src={'/noresult.png'} style={{width:500, padding:10}} />
+        : (this.state.search.length ?
+        <img src={'/noresult.png'} alt='no result found' />
         : <div/>)
       }
     </div>
