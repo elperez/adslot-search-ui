@@ -1,6 +1,5 @@
 # Adslot Search UI
 
-`HTML` `CSS` `JavaScript` `React.JS`
 ----
 ## Table of contents
 1. [Introduction](#introduction)
@@ -12,7 +11,7 @@
 7. [Other tasks](#other-tasks)
 
 ## Introduction
-This project aims to display site that contain a match between user-entered keywords (separated by comma) with site name and site category with user-entered keywords.
+This project aims to display site that contain a match between user-entered keywords (separated by comma) with site name and category.
 
 ### Assumptions
 * This project assumes that the data entered are correct. For example, the category numbers of the site is within range of the category list.
@@ -33,11 +32,11 @@ This project aims to display site that contain a match between user-entered keyw
 ### Approach
 1. More focus was put into the logic of the searchbar than in footer/header since sarchbar functionalities has more value.
 2. Material-ui searchbar was used because it closely resembles the searchbar in the sample image
-3. An image was croped and used to show that there is no result found
+3. An image was cropped and used to show that there is no result found
 4. Case insensitive comparison was included to be less strict when checking user entered keywords
 5. Spaces was also ignored during comparison
-6. Data was extracted to a json file and was read using [axios](https://www.npmjs.com/package/axios) to using `getData()` method, which can be replaced, in the future, with a method that does an actual api call to retrieve values.
-7. Some methods were extracted to the lib folder for the purpose of unit testing. These include `isTermInSiteName()`, `isTermInSiteCategory`(), and `getDataFromJSON()`. Basic assertions can be tested by running `npm test`
+6. Data was extracted to a JSON file and was read using [axios](https://www.npmjs.com/package/axios) to using `getData()` method, which can be replaced, in the future, with a method that does an actual api call to retrieve values.
+7. Some methods were extracted to the lib folder for the purpose of unit testing. These include `isTermInSiteName()`, `isTermInSiteCategory`(), and `getDataFromJSON()`. Corresponding tests are in the test folder containing basic assertions. Test can be run using `npm test` command in the terminal.
 
 ###  Accomplished
 * Basic search cases to check if there is a name and category match.
