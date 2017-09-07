@@ -19,7 +19,7 @@ This project aims to display site that contain a match between user-entered keyw
 
 ### How to run
 * in terminal, run `npm install`, then run `npm start`
-* to test, run `npm start`
+* to test, run `npm test`
 
 ### Technologies and frameworks used
 
@@ -43,7 +43,8 @@ This project aims to display site that contain a match between user-entered keyw
 
 ### Other tasks
 
-- In the unit test for `getDataFromJSON()`, the data was temporarily hardcoded from inside the test file
-- Nice to have: [jest + enzyme](https://www.npmjs.com/package/jest-enzyme) can be added to show assert components are displayed
-- [PostCSS](https://github.com/postcss/postcss) linter tool can be added for static code analysis
+- In the unit test for `getDataFromJSON()`, the data was temporarily hardcoded inside the test file.
+- Nice to have: [jest + enzyme](https://www.npmjs.com/package/jest-enzyme) can be added to assert the display of components.
+- [ESLint](http://eslint.org) linter tool can be added for static code analysis.
+- [PostCSS](https://github.com/postcss/postcss) [Autoprefixer](https://github.com/postcss/autoprefixer) plugin can be added for optimisation of css for the support of popular browsers.
 - More styling and polishing needs to be performed to follow the mockup.
