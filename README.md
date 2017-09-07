@@ -6,9 +6,10 @@
 1. [Introduction](#introduction)
 2. [Assumptions](#assumptions)
 3. [How to run](#wow-to-run)
-4. [Technologies and approach](#technologies-and-approach)
-4. [Accomplished](#accomplished)
-5. [Other tasks](#other-tasks)
+4. [Technologies and frameworks used](#technologies-and-frameworks-used)
+5. [Approach](#approach)
+6. [Accomplished](#accomplished)
+7. [Other tasks](#other-tasks)
 
 ## Introduction
 This project aims to display site that contain a match between user-entered keywords (separated by comma) with site name and site category with user-entered keywords.
@@ -21,15 +22,16 @@ This project aims to display site that contain a match between user-entered keyw
 * in terminal, run `npm install`, then run `npm start`
 * to test, run `npm start`
 
-### Technologies and approach
+### Technologies and frameworks used
 
-* React.JS and React packages used:
-[axios](https://www.npmjs.com/package/axios),   
+* React.JS framework was used for quicker development and so that work can be separated according to components.
+* React packages used:
+[axios](https://www.npmjs.com/package/axios)
 [material-ui](https://github.com/callemall/material-ui)
 [material-ui-searchbar](https://www.npmjs.com/package/material-ui-search-bar)
 
-* Approach
-1. More focus was put into the logic of the searchbar than in footer and header since sarchbar functionalities has more value.
+### Approach
+1. More focus was put into the logic of the searchbar than in footer/header since sarchbar functionalities has more value.
 2. Material-ui searchbar was used because it closely resembles the searchbar in the sample image
 3. An image was croped and used to show that there is no result found
 4. Case insensitive comparison was included to be less strict when checking user entered keywords
