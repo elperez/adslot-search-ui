@@ -26,15 +26,15 @@ describe('isTermInSiteCategory', () => {
     searchArray[0] = '';
     expect(isTermInSiteCategory([1], category, searchArray)).to.be.equal(false);
   })
-  it('scenario 1', () => {
+  it('should return true if an item comma separated list is in category list', () => {
     let searchArray = ["fun", "sport", " art "];
     expect(isTermInSiteCategory([1], category, searchArray)).to.be.equal(true);
   })
-  it('scenario 2', () => {
+  it('should return false if category list is empty', () => {
     let searchArray = ["automotive"];
     expect(isTermInSiteCategory([], category, searchArray)).to.be.equal(false);
   })
-  it('scenario 3', () => {
+  it('should return true for case insensitive item', () => {
     let searchArray = ["enter", "sport", "artistic"];
     expect(isTermInSiteCategory([1, 2], category, searchArray)).to.be.equal(true);
   })
