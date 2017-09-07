@@ -4,10 +4,11 @@
 ----
 ## Table of contents
 1. [Introduction](#introduction)
-2. [Why this project](#why-this-project)
-3. [Technologies](#technologies)
+2. [Assumptions](#assumptions)
+3. [How to run](#wow-to-run)
+4. [Technologies and approach](#technologies-and-approach)
 4. [Accomplished](#accomplished)
-5. [Conclusions and lessons learnt](#conclusions-and-lessons-learnt)
+5. [Other tasks](#other-tasks)
 
 ## Introduction
 This project aims to display site that contain a match between user-entered keywords (separated by comma) with site name and site category with user-entered keywords.
@@ -16,7 +17,7 @@ This project aims to display site that contain a match between user-entered keyw
 * This project assumes that the data entered are correct. For example, the category numbers of the site is within range of the category list.
 * It assumes that there may be a possible api call. Hence, test data was put un a JSON file to represent the data coming from an api call.
 
-### Technologies and approach
+### How to run
 * in terminal, run `npm install`, then run `npm start`
 * to test, run `npm start`
 
