@@ -6,9 +6,9 @@ const Site = (site) => {
   const description = site.description;
 
   return (
-    <div>
-      <a href={siteUrl}>{siteUrl} </a>
-      <p>{description}</p>
+    <div className="site-container">
+      <a className="site-url" href={siteUrl}>{siteUrl} </a>
+      <p className="site-description">{description}</p>
     </div>
   )
 }

@@ -1,7 +1,32 @@
 .footer {
-  padding: 2em;
+  padding: 3em;
   flex: 0 0 auto;
   position: relative;
   background-color: #2D2D2F;
-  height: 5em;
+  height: 1.2em;
+  color: #939393;
+  text-align: center;
+}
+
+.footer-links {
+  border-top: solid 1px #939393;
+  padding-top: 1em;
+}
+
+.footer-tm {
+  display: inline-block;
+}
+
+.footer-tm{
+  color: #939393;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.footer-anchor {
+  color: #939393;
+  font-weight: 300;
+  font-size: 12px;
+  border-left: solid 1px #939393;
+  padding: 0 .5em;
 }
