@@ -1,3 +1,18 @@
-a {
-  font-color: blue;
+.site-container {
+  text-align: left;
+  margin: 2em auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+.site-url {
+  width: 100%;
+  color: #2B6DC4;
+  font-weight: 300;
+  font-size: 20px;
+}
+.site-description {
+  margin: 0em;
+  width: 100%;
+  color: #707070;
+  font-weight: 300;
 }
